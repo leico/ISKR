@@ -9,8 +9,30 @@ $(function(){
   var data;
   
   $.getJSON('./' + page + '.json', function(json){
-            data = json;
+            var html = $('<ul>');
+            
+            Object.keys(json)
+            .forEach(function(k){
+                     var type    = $('<li>').append(k);
+                     
+                     var portals = $('<ul>');
+                     
+                     Object.keys(json[k])
+                     .forEach(function(l){
+                              var place = $('<li>');
+                              
+                              var portal = $('<a>').attr('href', 'http://www.google.com/maps?q=' + json[k][l].latlng);
+                              portal.text(json[k][l].name);
+                              place.append(portal);
+                              portals.append(place);
+                              });
+                     
+                     type.append(portals);
+                     type.appendTo(html);
+                     
+                     });
+            
+            html.appendTo('body');
             
             });
-  
 });
