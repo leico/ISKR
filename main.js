@@ -22,8 +22,10 @@ $(function(){
                               var place = $('<li>');
                               
                               var portal = $('<a>').attr('href', 'http://www.google.com/maps?q=' + json[k][l].latlng);
+                              var intel = $('<a>').attr('href', 'http://www.ingress.com/intel?z=17&ll=' + json[k][l].latlng)
                               portal.text(json[k][l].name);
-                              place.append(portal);
+                              intel.text('intel');
+                              place.append(portal).append('<br />').append(intel);
                               portals.append(place);
                               });
                      
